@@ -1,0 +1,42 @@
+# ==============================================================================
+# Bỏ qua các thư mục và file sinh ra tự động bởi Unity/Hệ điều hành
+# ==============================================================================
+
+# Thư mục sinh ra tự động
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/Assets/AssetStoreTools/
+/Assets/StreamingAssets/
+
+# Các file sinh ra tự động
+/UserSettings/
+/UnityPackageManager/
+/.vs/
+.vsconfig
+
+# Log và cache
+.DS_Store
+*.log
+*.orig
+*.pid
+*.svn
+*.user
+*.unityproj
+*.suo
+*.sln.docstates
+*.dll
+*.exe
+
+# Cache của hệ điều hành
+[Tt]humbs.db
+
+# File tạm
+*.tmp
+*.bak
+
+# Cache của Visual Studio
+*.csproj
+*.sln
