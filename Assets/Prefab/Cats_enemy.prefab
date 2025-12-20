@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e43ef7542cdd644adabd4d68a15dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatMovement
-  moveSpeed: 3
+  baseSpeed: 1.5
+  currentSpeed: 0
   targetWaypoint: {fileID: 0}
 --- !u!50 &5900055794554023049
 Rigidbody2D:
