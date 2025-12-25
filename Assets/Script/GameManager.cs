@@ -10,15 +10,22 @@ public class GameManager : MonoBehaviour
     public float baseTime = 10f;      // Thời gian gốc (Wave 1 là 10s)
     public float timeIncrease = 5f;   // Delta time (Mỗi wave tăng thêm 5s)
 
+    [Header("Kinh Tế (Economy)")]
+    public int currentGold = 0;
+    public int currentGems = 0;
+
     [Header("Hiển thị")]
     public TextMeshProUGUI waveText;  // Text "Màn 1"
     public TextMeshProUGUI timerText; // (Tùy chọn) Text hiển thị thời gian còn lại
+    public TextMeshProUGUI goldText; // 25/12/2025 vàng nhận khi kill
+    public TextMeshProUGUI gemText;  // 
 
     [Header("Quản lý UI")]
     public GameObject menuUI;         // Cụm nút Nâng cấp + Start
 
+
     [Header("Quản lý Gameplay")]
-    public MonoBehaviour enemySpawner; // Script đẻ quái
+    public CatSpawner enemySpawner; // Script đẻ quái
     public CastleHealth castleHealth;  // Script máu thành (để hồi máu khi reset)
 
     private float battleTimer;        // Biến đếm ngược nội bộ
@@ -33,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         // Khởi đầu: Reset mọi thứ về trạng thái chờ
         ShowMenu();
+        UpdateEconomyUI(); // Hiển thị tiền ngay khi vào game
 
         // KHÓA SPAWNER QUÁI LẠI NẾU CHƯA KHÓA
         if (enemySpawner != null)
@@ -48,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             battleTimer -= Time.deltaTime;
 
-            // Cập nhật đồng hồ lên màn hình (nếu có)
+            // Cập nhật đồng hồ lên màn hình
             if (timerText != null)
                 timerText.text = Mathf.CeilToInt(battleTimer).ToString() + "s";
 
@@ -78,7 +86,13 @@ public class GameManager : MonoBehaviour
     // --- HÀM XỬ LÝ THẮNG ---
     public void WinWave()
     {
-        Debug.Log("THẮNG WAVE " + currentWave);
+        //25/12/2025
+
+        // THƯỞNG GEM KHI THẮNG WAVE ---
+        AddGem(1);
+        Debug.Log("Thắng Wave! Nhận 1 Gem.");
+
+        //Debug.Log("THẮNG WAVE " + currentWave);
 
         currentWave++; // Lên màn mới
 
@@ -135,5 +149,24 @@ public class GameManager : MonoBehaviour
     void UpdateWaveText()
     {
         if (waveText != null) waveText.text = "MÀN " + currentWave;
+    }
+
+    // --- [MỚI] CÁC HÀM QUẢN LÝ TIỀN TỆ ---
+    public void AddGold(int amount)
+    {
+        currentGold += amount;
+        UpdateEconomyUI();
+    }
+
+    public void AddGem(int amount)
+    {
+        currentGems += amount;
+        UpdateEconomyUI();
+    }
+
+    public void UpdateEconomyUI()
+    {
+        if (goldText != null) goldText.text = "Vàng: " + currentGold;
+        if (gemText != null) gemText.text = "Gem: " + currentGems;
     }
 }

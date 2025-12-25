@@ -1707,7 +1707,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4637521504275456739}
   m_LocalRotation: {x: -0, y: 0.06104851, z: -0, w: 0.99813485}
-  m_LocalPosition: {x: 0, y: 0, z: 413}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1803,10 +1803,10 @@ MonoBehaviour:
   damageText: {fileID: 790717648077539693}
   allyHPText: {fileID: 6886298272147764451}
   spaText: {fileID: 2199384133634903029}
-  skillNameText: {fileID: 0}
-  skillDescText: {fileID: 0}
-  skillTypeText: {fileID: 0}
-  cooldownText: {fileID: 0}
+  skillNameText: {fileID: 5201036474731203826}
+  skillDescText: {fileID: 2252075190916386700}
+  skillTypeText: {fileID: 9065580568538402688}
+  cooldownText: {fileID: 7855684643823317238}
   groupLocked: {fileID: 0}
   groupUnlocked: {fileID: 0}
   priceBuyText: {fileID: 0}

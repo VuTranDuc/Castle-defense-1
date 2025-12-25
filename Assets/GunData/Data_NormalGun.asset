@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Data_NormalGun
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: 'Gun '
-  icon: {fileID: 0}
+  icon: {fileID: -8782366636065271241, guid: 8020d5f84433b984ca8a5ee63879d48e, type: 3}
   isUnlocked: 1
   currentLevel: 1
   unlockPrice: 0
   upgradeCost: 0
-  gemCost: 0
+  gemCost: 1
   damage: 100
-  fireRate: 0
+  fireRate: 1
   allyHealth: 0
-  skillName: 
-  skillDescription: 
+  skillName: "Si\xEAu b\u1EAFn"
+  skillDescription: "\u0110\xE2y l\xE0 k\u0129 n\u0103ng s\xFAng"
   skillType: 0
-  skillCooldown: 0
+  skillCooldown: 30
