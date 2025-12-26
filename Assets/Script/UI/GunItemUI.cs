@@ -1,105 +1,169 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine.UI; // Dùng cho Image
 
 public class GunItemUI : MonoBehaviour
 {
+    // Lưu trữ data hiện tại của item này để xử lý nút bấm
+    private GunData currentData;
+
     [Header("--- THÔNG TIN CHUNG (LEFT) ---")]
     public Image gunIcon;
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI levelText;  // Gun_Level
-    public TextMeshProUGUI damageText; // Gun_Dame
-    public TextMeshProUGUI allyHPText; // Allies_HP
-    public TextMeshProUGUI spaText;    // Gun_SPA
+    public TextMeshProUGUI gunNameText;
+    public TextMeshProUGUI gunLevelText;
+    public TextMeshProUGUI gunDamageText;
+    public TextMeshProUGUI gunAllyHPText; // Máu đệ tử (nếu có)
+    public TextMeshProUGUI gunSpaText;    // Tốc bắn
 
     [Header("--- KỸ NĂNG (MID) ---")]
     public TextMeshProUGUI skillNameText;
     public TextMeshProUGUI skillDescText;
-    public TextMeshProUGUI skillTypeText; // "Chủ động" / "Bị động"
-    public TextMeshProUGUI cooldownText;  // "14s"
+    public TextMeshProUGUI skillTypeText; // Chủ động/Bị động
+    public TextMeshProUGUI skillCooldownText;
 
     [Header("--- TRẠNG THÁI MUA (RIGHT) ---")]
-    public GameObject groupLocked;   // Kéo object chứa nút MUA vào đây
-    public GameObject groupUnlocked; // Kéo object chứa nút NÂNG CẤP + GẮN vào đây
+    // Group Locked: Chứa nút Mua và Giá tiền
+    public GameObject groupLocked;
+    public TextMeshProUGUI priceBuyText;
 
-    public TextMeshProUGUI priceBuyText;     // Text giá tiền ở nút MUA
-    public TextMeshProUGUI priceUpgradeText; // Text giá tiền ở nút NÂNG CẤP
+    // Group Unlocked: Chứa nút Nâng cấp Vàng, Gem, nút Trang bị
+    public GameObject groupUnlocked;
+    public TextMeshProUGUI priceUpgradeGoldText;
+    public TextMeshProUGUI priceUpgradeGemText;
 
-    private GunData currentData;
-
+    // --- HÀM KHỞI TẠO DỮ LIỆU (Được gọi từ ShopManager) ---
     public void SetGunData(GunData data)
     {
         currentData = data;
 
-        // 1. Hiển thị thông tin cơ bản
-        if (data.icon != null) gunIcon.sprite = data.icon;
-        nameText.text = data.gunName;
-        levelText.text = "Lv." + data.currentLevel;
-        damageText.text = data.damage.ToString();
-        spaText.text = data.fireRate + "s";
+        // 1. Hiển thị thông tin cơ bản (Luôn hiện)
+        if (gunIcon != null) gunIcon.sprite = data.icon;
+        if (gunNameText != null) gunNameText.text = data.gunName;
+        if (gunLevelText != null) gunLevelText.text = "Lv." + data.currentLevel;
+        if (gunDamageText != null) gunDamageText.text = data.damage.ToString();
+        if (gunSpaText != null) gunSpaText.text = data.fireRate + "s";
+        if (gunAllyHPText != null) gunAllyHPText.text = (data.allyHealth > 0) ? data.allyHealth.ToString() : "-";
 
-        // Hiển thị Máu Đệ Tử (Nếu = 0 thì ẩn đi cho gọn, hoặc để nguyên tùy bạn)
-        if (data.allyHealth > 0)
-            allyHPText.text = data.allyHealth.ToString();
-        else
-            allyHPText.text = "-";
+        // 2. Hiển thị thông tin Skill
+        if (skillNameText != null) skillNameText.text = data.skillName;
+        if (skillDescText != null) skillDescText.text = data.skillDescription;
 
-        // 2. Hiển thị Skill (Mid)
-        skillNameText.text = data.skillName;
-        skillDescText.text = data.skillDescription;
+        if (skillTypeText != null)
+            skillTypeText.text = (data.skillType == SkillType.Active) ? "CHỦ ĐỘNG" : "BỊ ĐỘNG";
 
-        if (data.skillType == SkillType.Active)
+        if (skillCooldownText != null)
+            skillCooldownText.text = (data.skillType == SkillType.Active) ? data.skillCooldown + "s" : "-";
+
+        // 3. XỬ LÝ LOGIC UI (MUA vs NÂNG CẤP)
+        UpdateStateUI();
+    }
+
+    // Hàm kiểm tra xem nên bật Group nào
+    void UpdateStateUI()
+    {
+        if (currentData.isUnlocked == false)
         {
-            skillTypeText.text = "CHỦ ĐỘNG";
-            skillTypeText.color = Color.red; // Màu đỏ cho ngầu
-            cooldownText.gameObject.SetActive(true);
-            cooldownText.text = "Hồi: " + data.skillCooldown + "s";
+            // --- TRƯỜNG HỢP: CHƯA MUA ---
+            if (groupLocked != null) groupLocked.SetActive(true);     // Hiện nút Mua
+            if (groupUnlocked != null) groupUnlocked.SetActive(false); // Ẩn nút Nâng cấp
+
+            // Cập nhật giá mua
+            if (priceBuyText != null) priceBuyText.text = "Gold: " + currentData.unlockPrice.ToString();
         }
         else
         {
-            skillTypeText.text = "BỊ ĐỘNG";
-            skillTypeText.color = Color.blue; // Màu xanh hiền hòa
-            cooldownText.gameObject.SetActive(false); // Ẩn cooldown đi
-        }
+            // --- TRƯỜNG HỢP: ĐÃ MUA ---
+            if (groupLocked != null) groupLocked.SetActive(false);    // Ẩn nút Mua
+            if (groupUnlocked != null) groupUnlocked.SetActive(true); // Hiện nút Nâng cấp
 
-        // 3. Xử lý Logic MUA / NÂNG CẤP (Right) -> QUAN TRỌNG NHẤT
-        if (data.isUnlocked)
-        {
-            // Nếu ĐÃ MUA: Hiện nút nâng cấp, Ẩn nút mua
-            groupLocked.SetActive(false);
-            groupUnlocked.SetActive(true);
-            priceUpgradeText.text = data.upgradeCost.ToString();
-        }
-        else
-        {
-            // Nếu CHƯA MUA: Hiện nút mua, Ẩn nút nâng cấp
-            groupLocked.SetActive(true);
-            groupUnlocked.SetActive(false);
-            priceBuyText.text = data.unlockPrice.ToString();
+            // Cập nhật giá nâng cấp
+            if (priceUpgradeGoldText != null) priceUpgradeGoldText.text = "Gold: " + currentData.upgradeCost.ToString();
+            // Ví dụ nâng bằng Gem (nếu bạn có UI cho nó)
+            if (priceUpgradeGemText != null) priceUpgradeGemText.text = "Gem: " + currentData.gemCost.ToString();
         }
     }
 
-    // Hàm gọi khi bấm nút MUA
-    public void OnBuyButtonPress()
+    // --- SỰ KIỆN NÚT BẤM (Gắn vào Button ở Inspector) ---
+
+    // 1. Nút MUA
+    public void OnClickBuy()
     {
-        // Kiểm tra tiền ở đây (sau này làm GameManager quản lý tiền)
-        Debug.Log("Đã mua súng: " + currentData.gunName);
+        // Kiểm tra tiền trong GameManager
+        if (GameManager.instance.currentGold >= currentData.unlockPrice)
+        {
+            // Trừ tiền
+            GameManager.instance.AddGold(-currentData.unlockPrice);
 
-        currentData.isUnlocked = true; // Mở khóa
-        currentData.currentLevel = 1;
+            // Mở khóa súng
+            currentData.isUnlocked = true;
 
-        // Cập nhật lại giao diện ngay lập tức
-        SetGunData(currentData);
+            // Cập nhật lại UI ngay lập tức
+            UpdateStateUI();
+
+            Debug.Log("Đã mua súng: " + currentData.gunName);
+        }
+        else
+        {
+            Debug.Log("Không đủ tiền mua súng!");
+        }
     }
 
-    // Hàm gọi khi bấm nút NÂNG CẤP
-    public void OnUpgradeButtonPress()
+    // 2. Nút NÂNG CẤP (Vàng)
+    public void OnClickUpgradeGold()
     {
-        Debug.Log("Nâng cấp súng lên Lv: " + (currentData.currentLevel + 1));
-        currentData.currentLevel++;
-        currentData.damage += 5; // Ví dụ tăng dame
+        if (GameManager.instance.currentGold >= currentData.upgradeCost)
+        {
+            // Trừ tiền
+            GameManager.instance.AddGold(-currentData.upgradeCost);
 
-        // Cập nhật lại giao diện
-        SetGunData(currentData);
+            // Tăng chỉ số
+            currentData.currentLevel++;
+            currentData.damage += 1; // Ví dụ tăng 5 dame
+            currentData.upgradeCost += 50; // Tăng giá lần sau
+
+            // Cập nhật lại toàn bộ thông tin hiển thị
+            SetGunData(currentData);
+
+            Debug.Log("Nâng cấp thành công Lv." + currentData.currentLevel);
+        }
+        else
+        {
+            Debug.Log("Không đủ vàng để nâng cấp!");
+        }
+    }
+
+    // 3. Nút NÂNG CẤP BẰNG GEM
+    public void OnClickUpgradeGem()
+    {
+        // Kiểm tra xem đủ Gem trong kho không
+        if (GameManager.instance.currentGems >= currentData.gemCost)
+        {
+            // 1. Trừ Gem (Gọi hàm AddGem với số âm)
+            GameManager.instance.AddGem(-currentData.gemCost);
+
+            // 2. Tăng chỉ số
+            currentData.currentLevel++;
+            currentData.damage += 1; // Ví dụ: Nâng bằng Gem tăng nhiều dame hơn (10)
+
+            // 3. Tăng giá Gem cho lần sau (Ví dụ mỗi lần tăng thêm 1 Gem)
+            currentData.gemCost += 1;
+
+            // 4. Cập nhật lại giao diện
+            SetGunData(currentData);
+
+            Debug.Log("Nâng cấp bằng GEM thành công! Level mới: " + currentData.currentLevel);
+        }
+        else
+        {
+            Debug.Log("Không đủ Gem để nâng cấp!");
+        }
+    }
+
+    // 4. Nút TRANG BỊ (Gắn súng vào tháp)
+    public void OnClickEquip()
+    {
+        // Logic gắn súng vào tháp sẽ xử lý sau
+        // Ví dụ: CastleManager.instance.ChangeWeapon(currentData);
+        Debug.Log("Đã trang bị súng: " + currentData.gunName);
     }
 }

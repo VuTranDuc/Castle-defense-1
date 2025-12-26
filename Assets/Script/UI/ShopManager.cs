@@ -28,6 +28,9 @@ public class ShopManager : MonoBehaviour
             // Tạo ra 1 bản sao từ Prefab
             GameObject newItem = Instantiate(gunItemPrefab, contentParent);
 
+            // Đảm bảo item không bị lệch vị trí Z hay bị méo Scale
+            newItem.transform.localScale = Vector3.one;
+
             // Lấy script UI của bản sao đó
             GunItemUI uiScript = newItem.GetComponent<GunItemUI>();
 

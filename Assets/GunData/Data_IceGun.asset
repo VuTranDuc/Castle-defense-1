@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6147da813591d48ae51a812ad75c18, type: 3}
   m_Name: Data_IceGun
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  gunName: 
-  icon: {fileID: 0}
+  gunName: Ice Gun
+  icon: {fileID: -8973400835950906701, guid: 7408a157c1f4e344a9e695bb1da6d713, type: 3}
   isUnlocked: 0
   currentLevel: 1
   unlockPrice: 0
