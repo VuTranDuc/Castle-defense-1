@@ -22,7 +22,7 @@ public class GunData : ScriptableObject
     public int gemCost;         // Giá nâng bằng Gem (nếu có)
 
     [Header("Chỉ số Chiến đấu")]
-    public int damage;          // Sát thương
+    public float damage;          // Sát thương
     public float fireRate;      // Tốc độ bắn
     public float allyHealth;    // Máu của đệ tử (nếu là súng summon)
 

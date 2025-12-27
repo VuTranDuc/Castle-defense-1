@@ -1,5 +1,12 @@
 fileFormatVersion: 2
-guid: 9634b627f1aa21b47a58743f19b1602c
+guid: 8f2930b670a6d6b429521a204bcb8679
+AssetOrigin:
+  serializedVersion: 1
+  productId: 248340
+  packageName: Pet Cats Pixel Art Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Pet Cats pack/Sprites/Cat-5/Cat-5-Laying.png
+  uploadId: 578467
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +78,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -110,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat-1-Licking 2_0
+      name: Cat-5-Laying_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 633c591ddf5bc434eac0d1e70ae0c83d
-      internalID: 181719445
+      spriteID: 445d129c93a590e48aaa77ba9d07d8fb
+      internalID: -1601407852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 2_1
+      name: Cat-5-Laying_1
       rect:
         serializedVersion: 2
         x: 50
@@ -147,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 026462ea65b2c0f4095c03c48747dcf4
-      internalID: -110161554
+      spriteID: bba586b03fc2c314cb27189fb42c8c47
+      internalID: -70754581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 2_2
+      name: Cat-5-Laying_2
       rect:
         serializedVersion: 2
         x: 100
@@ -169,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 894519f2fd8cfa34c9936119483738d2
-      internalID: 1339044095
+      spriteID: ea89979bec3e3ad4793a338f7ddbe4ab
+      internalID: 1103184564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 2_3
+      name: Cat-5-Laying_3
       rect:
         serializedVersion: 2
         x: 150
@@ -191,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e438b699ee87e74ebf6593ebb82c023
-      internalID: 2068244878
+      spriteID: e0dc2ad2df1c4f54ca010db82e3ce492
+      internalID: 1662347493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 2_4
+      name: Cat-5-Laying_4
       rect:
         serializedVersion: 2
         x: 200
@@ -213,8 +220,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08ae94d20c5943540ac017b45ecdb5c0
-      internalID: -382249083
+      spriteID: c910060e117ebd745b249d8b0f6dbce8
+      internalID: -265624052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-5-Laying_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20732f95dcb40bb4da8dafb813eb8a49
+      internalID: -809259201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-5-Laying_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f769aaf6f78ba478b0be906b9b0ec9
+      internalID: -1029992499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-5-Laying_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57160584c64189e48916f92305585542
+      internalID: 1212719165
       vertices: []
       indices: 
       edges: []
@@ -233,11 +306,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cat-1-Licking 2_0: 181719445
-      Cat-1-Licking 2_1: -110161554
-      Cat-1-Licking 2_2: 1339044095
-      Cat-1-Licking 2_3: 2068244878
-      Cat-1-Licking 2_4: -382249083
+      Cat-5-Laying_0: -1601407852
+      Cat-5-Laying_1: -70754581
+      Cat-5-Laying_2: 1103184564
+      Cat-5-Laying_3: 1662347493
+      Cat-5-Laying_4: -265624052
+      Cat-5-Laying_5: -809259201
+      Cat-5-Laying_6: -1029992499
+      Cat-5-Laying_7: 1212719165
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

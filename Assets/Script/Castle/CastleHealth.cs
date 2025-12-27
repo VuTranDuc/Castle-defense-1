@@ -43,7 +43,7 @@ public class CastleHealth : MonoBehaviour
             }
         }
 
-        //UpdateTextHP();
+        UpdateTextHP();
     }
 
     // --- LOGIC TRỪ MÁU ---

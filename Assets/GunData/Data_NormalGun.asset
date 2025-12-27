@@ -17,9 +17,9 @@ MonoBehaviour:
   isUnlocked: 1
   currentLevel: 1
   unlockPrice: 0
-  upgradeCost: 0
+  upgradeCost: 20
   gemCost: 1
-  damage: 100
+  damage: 1
   fireRate: 1
   allyHealth: 0
   skillName: "Si\xEAu b\u1EAFn"

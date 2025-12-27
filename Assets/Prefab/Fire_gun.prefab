@@ -104,10 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122a8fda4b9c8b248a27f38f9c4c28a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponShooting
+  gunData: {fileID: 11400000, guid: d5bc4a9f17babc043b55f983b4c6b989, type: 2}
   bulletPrefab: {fileID: 2486625337939745276, guid: e203553b53312e740ab8eb2d67372eb1, type: 3}
   firePoint: {fileID: 2418744858690718843}
-  range: 5
-  fireRate: 1
+  range: 15
+  fireRate: 2.5
   shootForce: 20
 --- !u!1 &6581840090805044988
 GameObject:

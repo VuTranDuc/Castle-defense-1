@@ -3,7 +3,7 @@
 public class BulletController : MonoBehaviour
 {
     [Header("Chỉ số chung")]
-    public float damage = 10f;
+    public float damage = 1f;
     public float lifeTime = 3f;
 
     [Header("Hiệu ứng Băng (Ice)")]
@@ -18,6 +18,14 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, lifeTime); // Tự hủy nếu bắn trượt
+    }
+
+    // --- HÀM MỚI: ĐỂ SÚNG TRUYỀN DAME TỪ GUNDATA VÀO ĐÂY ---
+    public void SetBulletStats(float newDamage)
+    {
+        damage = newDamage;
+        // Sau này nếu GunData có chỉ số đốt/làm chậm, truyền vào đây luôn
+        // ví dụ: burnDamagePerSec = newBurnDamage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

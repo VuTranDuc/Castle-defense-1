@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 58d246acfaac87c4fb27ec58f8e220c6
+guid: c85cfc441f08a7e4198f2b7f02f0ce8b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat-1-Licking 1_0
+      name: Cat-1-Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d2d4f83cfdbc934c8793827528bb6f5
-      internalID: -765463992
+      spriteID: 20353ec16f1a5d84d95a4a04561aef4b
+      internalID: 2060995080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 1_1
+      name: Cat-1-Walk_1
       rect:
         serializedVersion: 2
         x: 50
@@ -147,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beb1a0360d2c61f49a79418a3d7d10ce
-      internalID: -2133743871
+      spriteID: 8120858455bade049a603383bf29ac70
+      internalID: -826001957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 1_2
+      name: Cat-1-Walk_2
       rect:
         serializedVersion: 2
         x: 100
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a5a9db8a6580ab4c8268a614a89b91c
-      internalID: 249323592
+      spriteID: cc152050748760a49bad4b0504fa2852
+      internalID: 383817070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 1_3
+      name: Cat-1-Walk_3
       rect:
         serializedVersion: 2
         x: 150
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26668b85b3b71b549bc49bf64638e906
-      internalID: -1230147584
+      spriteID: 0a10c135c998628459bcc482f5912ae2
+      internalID: -904064102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Licking 1_4
+      name: Cat-1-Walk_4
       rect:
         serializedVersion: 2
         x: 200
@@ -213,8 +213,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 248c69869b8e91e4098b12c5c0c22fb4
-      internalID: 1151042599
+      spriteID: ac59a90e26c209c44862d25a5d15adde
+      internalID: 882806017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-1-Walk_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b4624635527c54d85b86374f5a7841
+      internalID: -221086167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-1-Walk_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b7a179c9e76a24c8c029fdbeb52957
+      internalID: -1389694482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat-1-Walk_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 935cba7968564c84b85824487af4289e
+      internalID: -283647557
       vertices: []
       indices: 
       edges: []
@@ -233,11 +299,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cat-1-Licking 1_0: -765463992
-      Cat-1-Licking 1_1: -2133743871
-      Cat-1-Licking 1_2: 249323592
-      Cat-1-Licking 1_3: -1230147584
-      Cat-1-Licking 1_4: 1151042599
+      Cat-1-Walk_0: 2060995080
+      Cat-1-Walk_1: -826001957
+      Cat-1-Walk_2: 383817070
+      Cat-1-Walk_3: -904064102
+      Cat-1-Walk_4: 882806017
+      Cat-1-Walk_5: -221086167
+      Cat-1-Walk_6: -1389694482
+      Cat-1-Walk_7: -283647557
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

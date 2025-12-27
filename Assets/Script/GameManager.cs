@@ -51,19 +51,37 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Chỉ đếm ngược khi đang đánh nhau
+        // Chỉ chạy logic khi đang trong trận
         if (isBattling)
         {
-            battleTimer -= Time.deltaTime;
-
-            // Cập nhật đồng hồ lên màn hình
-            if (timerText != null)
-                timerText.text = Mathf.CeilToInt(battleTimer).ToString() + "s";
-
-            // --- ĐIỀU KIỆN THẮNG: HẾT GIỜ ---
-            if (battleTimer <= 0)
+            // --- GIAI ĐOẠN 1: CÒN THỜI GIAN ---
+            if (battleTimer > 0)
             {
-                WinWave();
+                battleTimer -= Time.deltaTime;
+
+                // Cập nhật đồng hồ
+                if (timerText != null)
+                    timerText.text = Mathf.CeilToInt(battleTimer).ToString() + "s";
+            }
+            // --- GIAI ĐOẠN 2: HẾT GIỜ (OVERTIME) ---
+            else
+            {
+                // 1. Neo thời gian ở số 0 cho đẹp
+                battleTimer = 0;
+                if (timerText != null) timerText.text = "0s";
+
+                // 2. Ngắt máy đẻ quái NGAY LẬP TỨC
+                if (enemySpawner != null) enemySpawner.enabled = false;
+
+                // 3. Kiểm tra xem còn con quái nào sống không?
+                // Tìm tất cả object có Tag là "Enemy" đang hoạt động
+                GameObject[] enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy");
+
+                // Nếu không còn quái nào (Length == 0) thì mới cho Thắng
+                if (enemiesLeft.Length == 0)
+                {
+                    WinWave();
+                }
             }
         }
     }

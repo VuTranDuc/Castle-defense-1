@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26abc5a06c32c0c41b1c51944356f68d
+guid: 2ac85a237ff48d64b838f6e5e2704773
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat-1-Stretching_0
+      name: Cat-1-Run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21d17984f99b45144a046b5b8f534b23
-      internalID: -1877359191
+      spriteID: 1cf83ab10fdacd048b2ff30e5cd0d9e5
+      internalID: -1424305560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_1
+      name: Cat-1-Run_1
       rect:
         serializedVersion: 2
         x: 50
@@ -147,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b005be272d130d84f84e91217e37a0c0
-      internalID: -223912359
+      spriteID: 2e7841314cc12254bbd1771a9f0d4f50
+      internalID: -1763267072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_2
+      name: Cat-1-Run_2
       rect:
         serializedVersion: 2
         x: 100
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 683456cb2e942d5469d297e4385c0034
-      internalID: 1470503969
+      spriteID: 0bf0e3687992f5f45bd0f326389de582
+      internalID: 1740150837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_3
+      name: Cat-1-Run_3
       rect:
         serializedVersion: 2
         x: 150
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3377284d05a30c47981271c61d9d080
-      internalID: -1358365855
+      spriteID: 0928cd43310b79549abaef7fd3bb21f2
+      internalID: 2099902667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_4
+      name: Cat-1-Run_4
       rect:
         serializedVersion: 2
         x: 200
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 198382684086f0742ba995356815a99c
-      internalID: 1789253325
+      spriteID: e9b362e50a6067743ae366c3fb579461
+      internalID: -699049130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_5
+      name: Cat-1-Run_5
       rect:
         serializedVersion: 2
         x: 250
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 581dbf3e83d9d194b9182bcda68e81f1
-      internalID: 1468190796
+      spriteID: f58dfc9cd006a0146872bfd857f7c225
+      internalID: -1561419467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_6
+      name: Cat-1-Run_6
       rect:
         serializedVersion: 2
         x: 300
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bfae4aa426a1754dbafd5ff76e42c9e
-      internalID: 1953444065
+      spriteID: 2c0753893fc3b8d43ada413c2551a309
+      internalID: -2132358932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat-1-Stretching_7
+      name: Cat-1-Run_7
       rect:
         serializedVersion: 2
         x: 350
@@ -279,118 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f354d49cc6347504ab770c7ed71286d7
-      internalID: 1824358056
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cat-1-Stretching_8
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38e32932185687a42ab3bea8f9ab81ce
-      internalID: 1679710403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cat-1-Stretching_9
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d0a1b789f802af45bbd5104b4f163d1
-      internalID: 1191316524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cat-1-Stretching_10
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fa09775feeee2344bd748a3376ec532
-      internalID: -1834517048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cat-1-Stretching_11
-      rect:
-        serializedVersion: 2
-        x: 550
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 588cc3308ade550459406f79661e4875
-      internalID: -1634474842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cat-1-Stretching_12
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc9a62c673f60b94d92af2a52bb30b49
-      internalID: 1385314519
+      spriteID: 4f8ccd09d05fe9a43b015facb7a857d5
+      internalID: 1257282901
       vertices: []
       indices: 
       edges: []
@@ -409,19 +299,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cat-1-Stretching_0: -1877359191
-      Cat-1-Stretching_1: -223912359
-      Cat-1-Stretching_10: -1834517048
-      Cat-1-Stretching_11: -1634474842
-      Cat-1-Stretching_12: 1385314519
-      Cat-1-Stretching_2: 1470503969
-      Cat-1-Stretching_3: -1358365855
-      Cat-1-Stretching_4: 1789253325
-      Cat-1-Stretching_5: 1468190796
-      Cat-1-Stretching_6: 1953444065
-      Cat-1-Stretching_7: 1824358056
-      Cat-1-Stretching_8: 1679710403
-      Cat-1-Stretching_9: 1191316524
+      Cat-1-Run_0: -1424305560
+      Cat-1-Run_1: -1763267072
+      Cat-1-Run_2: 1740150837
+      Cat-1-Run_3: 2099902667
+      Cat-1-Run_4: -699049130
+      Cat-1-Run_5: -1561419467
+      Cat-1-Run_6: -2132358932
+      Cat-1-Run_7: 1257282901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

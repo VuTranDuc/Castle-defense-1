@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f450960c01daaab46a1bccb576c2e38a
+guid: fc17eefadbfd7854eadf03a912ceeb16
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat-1-Sitting_0
+      name: Cat-1-Sleeping2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ce9978cb016efb498ab4b1b023acaae
-      internalID: -1507839146
+      spriteID: 6a71923ade75d0746a7a7fd0b869ec40
+      internalID: 1569228678
       vertices: []
       indices: 
       edges: []
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cat-1-Sitting_0: -1507839146
+      Cat-1-Sleeping2_0: 1569228678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

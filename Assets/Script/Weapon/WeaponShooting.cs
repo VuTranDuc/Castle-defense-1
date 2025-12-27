@@ -2,6 +2,9 @@
 
 public class WeaponShooting : MonoBehaviour
 {
+    [Header("Dữ Liệu Súng")]
+    public GunData gunData; // --- KÉO FILE DATA (Normal/Ice/Fire) VÀO ĐÂY ---
+
     [Header("Cài đặt Súng")]
     public GameObject bulletPrefab; // Kéo Prefab Mũi tên vào đây
     public Transform firePoint;     // Kéo điểm FirePoint (đầu nòng) vào đây
@@ -79,6 +82,18 @@ public class WeaponShooting : MonoBehaviour
 
         // Sinh ra đạn với góc đã sửa
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, finalRotation);
+
+        // --- NẠP DỮ LIỆU TỪ GUNDATA VÀO ĐẠN ---
+        BulletController bulletScript = bullet.GetComponent<BulletController>();
+        if (bulletScript != null)
+        {
+            // Truyền Dame từ GunData sang Bullet
+            bulletScript.SetBulletStats(gunData.damage);
+
+            // Nếu bạn muốn nâng cấp cả hiệu ứng cháy/băng trong GunData sau này
+            // thì truyền tiếp ở đây. Ví dụ:
+            // bulletScript.burnDamagePerSec = gunData.someBurnStat;
+        }
 
         // Đẩy viên đạn bay đi
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122a8fda4b9c8b248a27f38f9c4c28a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleWeapon
+  gunData: {fileID: 11400000, guid: ead2fb402b622cf42867cd88595bf81d, type: 2}
   bulletPrefab: {fileID: 2486625337939745276, guid: e23b1c8ae124d9b4e96683127e57a853, type: 3}
   firePoint: {fileID: 698800186661274509}
   range: 15
