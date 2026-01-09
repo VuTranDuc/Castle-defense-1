@@ -15,14 +15,16 @@ MonoBehaviour:
   gunName: Ice Gun
   icon: {fileID: -8973400835950906701, guid: 7408a157c1f4e344a9e695bb1da6d713, type: 3}
   isUnlocked: 1
-  currentLevel: 1
+  currentLevel: 2
   unlockPrice: 0
   upgradeCost: 50
-  gemCost: 1
-  damage: 1
+  gemCost: 2
+  damage: 2
   fireRate: 3
   allyHealth: 0
-  skillName: 
-  skillDescription: 
-  skillType: 0
-  skillCooldown: 0
+  skillName: Skill1
+  skillDescription: "C\xF3 kh\u1EA3 n\u0103ng \u0111\xF3ng b\u0103ng qu\xE1i 3s\n\n\u0110\xE2y
+    l\xE0 Skill S\xFAng!!\n"
+  skillType: 1
+  skillCooldown: 3
+  gunPrefab: {fileID: 8111511145857329119, guid: e07f841180be2ef4a81c800874073268, type: 3}

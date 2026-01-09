@@ -28,8 +28,11 @@ public class GameManager : MonoBehaviour
     public CatSpawner enemySpawner; // Script đẻ quái
     public CastleHealth castleHealth;  // Script máu thành (để hồi máu khi reset)
 
-    private float battleTimer;        // Biến đếm ngược nội bộ
+    //private float battleTimer;        // Biến đếm ngược nội bộ
+    //30/12/2025
+    public float battleTimer;
     private bool isBattling = false;  // Kiểm tra xem đang đánh nhau hay đang ở menu
+    private bool bossSpawned = false; // Kiểm tra xem Boss đã ra chưa
 
     void Awake()
     {
@@ -51,36 +54,83 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Chỉ chạy logic khi đang trong trận
         if (isBattling)
         {
             // --- GIAI ĐOẠN 1: CÒN THỜI GIAN ---
             if (battleTimer > 0)
             {
                 battleTimer -= Time.deltaTime;
-
-                // Cập nhật đồng hồ
-                if (timerText != null)
-                    timerText.text = Mathf.CeilToInt(battleTimer).ToString() + "s";
+                if (timerText != null) timerText.text = Mathf.CeilToInt(battleTimer).ToString() + "s";
             }
-            // --- GIAI ĐOẠN 2: HẾT GIỜ (OVERTIME) ---
+            // --- GIAI ĐOẠN 2: HẾT GIỜ ---
             else
             {
-                // 1. Neo thời gian ở số 0 cho đẹp
                 battleTimer = 0;
                 if (timerText != null) timerText.text = "0s";
 
-                // 2. Ngắt máy đẻ quái NGAY LẬP TỨC
-                if (enemySpawner != null) enemySpawner.enabled = false;
+                // 1. KIỂM TRA BOSS WAVE (Mỗi 5 wave: 5, 10, 15...)
+                if (currentWave % 5 == 0)
+                {
+                    // Nếu chưa gọi Boss thì gọi ra ngay
+                    if (!bossSpawned)
+                    {
+                        if (enemySpawner != null) enemySpawner.SpawnBoss();
+                        bossSpawned = true; // Đánh dấu đã gọi rồi để không gọi lặp lại
 
-                // 3. Kiểm tra xem còn con quái nào sống không?
-                // Tìm tất cả object có Tag là "Enemy" đang hoạt động
+                        // Hiện thông báo (nếu có)
+                        if (waveText != null) waveText.text = "BOSS ĐANG ĐẾN!";
+                    }
+                }
+
+                // 2. LOGIC CHECK THẮNG
+                // Tìm tất cả quái (Bao gồm cả Boss vừa sinh ra)
                 GameObject[] enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy");
 
-                // Nếu không còn quái nào (Length == 0) thì mới cho Thắng
                 if (enemiesLeft.Length == 0)
                 {
-                    WinWave();
+                    // Chỉ thắng khi không còn quái nào VÀ (nếu là wave Boss thì Boss phải ra rồi)
+                    // Logic: Nếu là wave 5, mà bossSpawned = false (tức là chưa kịp ra) thì chưa được thắng.
+
+                    if (currentWave % 5 != 0 || bossSpawned == true)
+                    {
+                        WinWave();
+                    }
+                }
+            }
+        }
+
+        //27/12/2025 placement
+        // --- XỬ LÝ CLICK CHUỘT (Thay thế OnMouseDown) ---
+        // Kiểm tra nếu bấm chuột trái
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Nếu đang đánh nhau thì không cho làm gì cả
+            if (isBattling)
+            {
+                Debug.Log("Đang trong trận chiến! Hãy đợi hết Wave để xây dựng.");
+                return; // Thoát hàm ngay, không chạy đoạn Raycast bên dưới nữa
+            }
+            // ------------------------------------------
+
+            // Bắn tia Raycast (giống hệt code Debug bạn vừa test thành công)
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            // Nếu tia bắn trúng một vật thể nào đó
+            if (hit.collider != null)
+            {
+                // Kiểm tra xem vật thể đó có phải là WeaponSlot không
+                WeaponSlot slot = hit.collider.GetComponent<WeaponSlot>();
+
+                if (slot != null)
+                {
+                    // === LOGIC CLICK VÀO Ô ĐẤT ===
+
+                    // Dù ô trống hay đã có súng, cứ click vào là MỞ SHOP lên hết!
+                    Debug.Log("Click vào ô: " + slot.name + ". Mở Shop!");
+
+                    // Gọi hàm mở shop bình thường, truyền cái ô này vào để Shop biết
+                    ShopManager.instance.OpenShopForSlot(slot);
                 }
             }
         }
@@ -93,7 +143,11 @@ public class GameManager : MonoBehaviour
         // Công thức: 10s + (Wave hiện tại * 5s)
         battleTimer = baseTime + (currentWave - 1) * timeIncrease;
 
-        Debug.Log("Bắt đầu Wave " + currentWave + " - Thời gian: " + battleTimer + "s");
+        //Debug.Log("Bắt đầu Wave " + currentWave + " - Thời gian: " + battleTimer + "s");
+
+        //30/12/2025
+        // Reset trạng thái Boss
+        bossSpawned = false;
 
         // 2. Ẩn UI, Bật Quái
         isBattling = true;
@@ -169,7 +223,7 @@ public class GameManager : MonoBehaviour
         if (waveText != null) waveText.text = "MÀN " + currentWave;
     }
 
-    // --- [MỚI] CÁC HÀM QUẢN LÝ TIỀN TỆ ---
+    // --- CÁC HÀM QUẢN LÝ TIỀN TỆ ---
     public void AddGold(int amount)
     {
         currentGold += amount;

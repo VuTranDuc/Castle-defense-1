@@ -8,8 +8,8 @@ public class BulletController : MonoBehaviour
 
     [Header("Hiệu ứng Băng (Ice)")]
     [Range(0, 1)]
-    public float slowAmount = 0f; // 0 = Không chậm, 0.5 = Chậm 50%
-    public float slowDuration = 0f; // Thời gian chậm
+    public float freezeAmount = 1f; // 0 = Không chậm, 0.5 = Chậm 50%
+    public float freezeDuration = 2f; // Thời gian chậm
 
     [Header("Hiệu ứng Lửa (Đốt cháy)")] // --- MỚI ---
     public float burnDamagePerSec = 0f; // Sát thương mỗi giây (Ví dụ: 5 máu/giây)
@@ -24,8 +24,7 @@ public class BulletController : MonoBehaviour
     public void SetBulletStats(float newDamage)
     {
         damage = newDamage;
-        // Sau này nếu GunData có chỉ số đốt/làm chậm, truyền vào đây luôn
-        // ví dụ: burnDamagePerSec = newBurnDamage;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,13 +46,13 @@ public class BulletController : MonoBehaviour
                 }
             }
             
-            // Gây làm chậm (Nếu có slowAmount > 0)
-            if (slowAmount > 0)
+            // Gây làm chậm (Nếu có freezeAmount > 0)
+            if (freezeAmount > 0)
             {
                 CatMovement movement = other.GetComponent<CatMovement>();
                 if (movement != null)
                 {
-                    movement.ApplySlow(slowAmount, slowDuration);
+                    movement.ApplySlow(freezeAmount, freezeDuration);
                 }
             }
 

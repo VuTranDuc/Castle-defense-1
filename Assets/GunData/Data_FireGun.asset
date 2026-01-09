@@ -23,6 +23,8 @@ MonoBehaviour:
   fireRate: 2.5
   allyHealth: 0
   skillName: 
-  skillDescription: 
-  skillType: 0
-  skillCooldown: 0
+  skillDescription: "C\xF3 kh\u1EA3 n\u0103ng thi\xEAu \u0111\u1ED1t qu\xE1i 2dmg/s\n\n\u0110\xE2y
+    l\xE0 skill s\xFAng!!"
+  skillType: 1
+  skillCooldown: 3
+  gunPrefab: {fileID: 42587710183386442, guid: 725a4a8f34472084fafa064bfe34e918, type: 3}

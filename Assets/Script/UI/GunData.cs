@@ -31,4 +31,8 @@ public class GunData : ScriptableObject
     [TextArea] public string skillDescription;
     public SkillType skillType; // Chọn Active hoặc Passive
     public float skillCooldown; // Thời gian hồi chiêu (Chỉ dùng cho Active)
+
+    // 27/12/2025 placement
+    [Header("Hình ảnh In-Game")]
+    public GameObject gunPrefab; // Kéo Prefab khẩu súng (có script WeaponShooting) vào đây
 }

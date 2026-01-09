@@ -2,8 +2,8 @@
 
 public class ArrowProjectile : MonoBehaviour
 {
-    public float damage = 5f;
-    public float lifeTime = 3f;
+    public float damage = 2f;
+    public float lifeTime = 2f;
 
     private Rigidbody2D rb;
     private bool hasHit = false;

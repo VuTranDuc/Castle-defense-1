@@ -118,8 +118,8 @@ public class GunItemUI : MonoBehaviour
 
             // Tăng chỉ số
             currentData.currentLevel++;
-            currentData.damage += 1; // Ví dụ tăng 5 dame
-            currentData.upgradeCost += 50; // Tăng giá lần sau
+            currentData.damage += 1; 
+            currentData.upgradeCost += 50; 
 
             // Cập nhật lại toàn bộ thông tin hiển thị
             SetGunData(currentData);
@@ -138,14 +138,14 @@ public class GunItemUI : MonoBehaviour
         // Kiểm tra xem đủ Gem trong kho không
         if (GameManager.instance.currentGems >= currentData.gemCost)
         {
-            // 1. Trừ Gem (Gọi hàm AddGem với số âm)
+            // 1. Trừ Gem
             GameManager.instance.AddGem(-currentData.gemCost);
 
             // 2. Tăng chỉ số
             currentData.currentLevel++;
-            currentData.damage += 1; // Ví dụ: Nâng bằng Gem tăng nhiều dame hơn (10)
+            currentData.damage += 1; 
 
-            // 3. Tăng giá Gem cho lần sau (Ví dụ mỗi lần tăng thêm 1 Gem)
+            // 3. Tăng giá Gem cho lần sau 
             currentData.gemCost += 1;
 
             // 4. Cập nhật lại giao diện
@@ -162,8 +162,9 @@ public class GunItemUI : MonoBehaviour
     // 4. Nút TRANG BỊ (Gắn súng vào tháp)
     public void OnClickEquip()
     {
-        // Logic gắn súng vào tháp sẽ xử lý sau
-        // Ví dụ: CastleManager.instance.ChangeWeapon(currentData);
+        // Gọi sang ShopManager để thực hiện gắn súng vào ô đang chọn
+        ShopManager.instance.EquipGunToSlot(currentData);
+
         Debug.Log("Đã trang bị súng: " + currentData.gunName);
     }
 }

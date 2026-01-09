@@ -15,14 +15,15 @@ MonoBehaviour:
   gunName: 'Gun '
   icon: {fileID: -8782366636065271241, guid: 8020d5f84433b984ca8a5ee63879d48e, type: 3}
   isUnlocked: 1
-  currentLevel: 1
+  currentLevel: 4
   unlockPrice: 0
-  upgradeCost: 20
-  gemCost: 1
-  damage: 1
+  upgradeCost: 120
+  gemCost: 2
+  damage: 6
   fireRate: 1
   allyHealth: 0
   skillName: "Si\xEAu b\u1EAFn"
   skillDescription: "\u0110\xE2y l\xE0 k\u0129 n\u0103ng s\xFAng"
   skillType: 0
   skillCooldown: 30
+  gunPrefab: {fileID: 2713661868183121421, guid: 830b0ab92029e004289867b22cf2fafc, type: 3}
