@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: Ice Gun
   icon: {fileID: -8973400835950906701, guid: 7408a157c1f4e344a9e695bb1da6d713, type: 3}
-  isUnlocked: 1
-  currentLevel: 2
-  unlockPrice: 0
-  upgradeCost: 50
-  gemCost: 2
-  damage: 2
+  isUnlocked: 0
+  currentLevel: 1
+  unlockPrice: 300
+  upgradeCost: 25
+  gemCost: 1
+  damage: 1
   fireRate: 3
   allyHealth: 0
   skillName: Skill1

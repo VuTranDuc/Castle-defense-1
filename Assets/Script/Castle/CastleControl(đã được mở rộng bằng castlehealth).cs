@@ -22,7 +22,7 @@ public class TowerControl : MonoBehaviour
     }
 
     // Hàm này chạy khi có vật thể (có Collider + Rigidbody) chạm vào vùng Trigger của Thành
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         // 1. Kiểm tra xem vật thể chạm vào có phải là Enemy không
         // (Nhớ đặt Tag cho Prefab Quái vật là "Enemy")
@@ -44,7 +44,7 @@ public class TowerControl : MonoBehaviour
             // 4. Tiêu diệt Quái vật ngay lập tức (Húc xong là chết)
             Destroy(other.gameObject);
         }
-    }
+    }*/
 
     void TakeDamage(float damage)
     {

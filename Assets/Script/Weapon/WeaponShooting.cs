@@ -3,49 +3,69 @@
 public class WeaponShooting : MonoBehaviour
 {
     [Header("Dữ Liệu Súng")]
-    public GunData gunData; // --- KÉO FILE DATA (Normal/Ice/Fire) VÀO ĐÂY ---
+    public GunData gunData;
 
     [Header("Cài đặt Súng")]
-    public GameObject bulletPrefab; // Kéo Prefab Mũi tên vào đây
-    public Transform firePoint;     // Kéo điểm FirePoint (đầu nòng) vào đây
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
     [Header("Thông số")]
-    public float range = 15f;       // Tầm bắn
-    public float fireRate = 1f;     // Tốc độ bắn (1 giây 1 viên)
-    public float shootForce = 20f;  // Lực bắn (đạn bay nhanh hay chậm)
+    public float range = 15f;
+    public float fireRate = 1f;
+    public float shootForce = 20f;
 
-    private Transform target;       // Mục tiêu hiện tại
-    private float fireCountdown = 0f; // Bộ đếm ngược thời gian bắn
+    // --- MỚI THÊM: Chỉnh cái này để nâng tâm ngắm lên cao hơn ---
+    [Range(0f, 3f)]
+    public float aimHeightOffset = 0.5f; // Mặc định nhích lên 0.5 đơn vị
+
+    private Transform target;
+    private float fireCountdown = 0f;
 
     void Update()
     {
         // 1. Luôn tìm mục tiêu mới nhất
         UpdateTarget();
 
-        // 2. Nếu không có mục tiêu thì thôi, không làm gì cả
+        // 2. Nếu không có mục tiêu thì thôi
         if (target == null) return;
 
-        // 3. Quay súng về phía mục tiêu
-        Vector3 direction = target.position - transform.position;
+        // --- TỰ ĐỘNG TÍNH TOÁN ĐIỂM NGẮM DỰA VÀO KÍCH THƯỚC QUÁI ---
+        Vector3 aimPos = target.position; // Mặc định là chân
+
+        // Lấy cái Collider (Vùng va chạm) của con quái
+        Collider2D enemyCollider = target.GetComponent<Collider2D>();
+
+        if (enemyCollider != null)
+        {
+            // Nếu có Collider, lấy điểm GIỮA (Center) của nó
+            // Boss to -> Tâm cao. Mèo bé -> Tâm thấp. Tự động chuẩn!
+            aimPos = enemyCollider.bounds.center;
+        }
+        else
+        {
+            // Nếu lỡ con quái quên gắn Collider thì cộng nhẹ 0.5f cho chắc
+            aimPos.y += 0.5f;
+        }
+        // ---------------------------------------------------------------------
+
+        // Tính hướng từ súng tới ĐIỂM GIỮA QUÁI
+        Vector3 direction = aimPos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        // 4. Logic Bắn Liên Thanh
-        if (fireCountdown <= 0f) // Nếu đếm ngược đã hết
+        // 4. Logic Bắn
+        if (fireCountdown <= 0f)
         {
-            Shoot(); // Bắn!
-            fireCountdown = 1f / fireRate; // Đặt lại bộ đếm (QUAN TRỌNG)
+            Shoot();
+            fireCountdown = 1f / fireRate;
         }
 
-        // Trừ dần thời gian
         fireCountdown -= Time.deltaTime;
     }
 
     void UpdateTarget()
     {
-        // Tìm tất cả kẻ địch đang sống
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -53,7 +73,6 @@ public class WeaponShooting : MonoBehaviour
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
 
-            // Nếu con này gần hơn con trước VÀ nằm trong tầm bắn
             if (distanceToEnemy < shortestDistance && distanceToEnemy <= range)
             {
                 shortestDistance = distanceToEnemy;
@@ -61,7 +80,6 @@ public class WeaponShooting : MonoBehaviour
             }
         }
 
-        // Cập nhật mục tiêu
         if (nearestEnemy != null)
         {
             target = nearestEnemy.transform;
@@ -74,37 +92,29 @@ public class WeaponShooting : MonoBehaviour
 
     void Shoot()
     {
-        // Tạo một góc xoay bù thêm -90 độ
-        Quaternion rotationOffset = Quaternion.Euler(0, 0, -90);
+        // Góc xoay bù (nếu prefab đạn của bạn nằm ngang thì để 0, nằm dọc thì -90)
+        // Thử để mặc định là bắn thẳng theo nòng súng trước
+        Quaternion rotation = transform.rotation;
 
-        // Nhân góc quay của súng với góc bù để ra góc cuối cùng
-        Quaternion finalRotation = transform.rotation * rotationOffset;
+        // Nếu đạn bị xoay ngang dọc kì cục thì mới dùng dòng dưới này (bỏ comment ra):
+        // Quaternion rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
 
-        // Sinh ra đạn với góc đã sửa
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, finalRotation);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
 
-        // --- NẠP DỮ LIỆU TỪ GUNDATA VÀO ĐẠN ---
         BulletController bulletScript = bullet.GetComponent<BulletController>();
         if (bulletScript != null)
         {
-            // Truyền Dame từ GunData sang Bullet
             bulletScript.SetBulletStats(gunData.damage);
-
-            // Nếu bạn muốn nâng cấp cả hiệu ứng cháy/băng trong GunData sau này
-            // thì truyền tiếp ở đây. Ví dụ:
-            // bulletScript.burnDamagePerSec = gunData.someBurnStat;
         }
 
-        // Đẩy viên đạn bay đi
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Bắn thẳng về phía bên phải của súng (hướng súng đang quay)
+            // Bắn thẳng về phía bên phải của súng (hướng súng đang quay về phía quái)
             rb.linearVelocity = transform.right * shootForce;
         }
     }
 
-    // Vẽ vòng tròn đỏ để biết tầm bắn xa đến đâu
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: Fire Gun
   icon: {fileID: -5667308705978867488, guid: f3b36e611977739458e75aa826e44f2d, type: 3}
-  isUnlocked: 1
+  isUnlocked: 0
   currentLevel: 1
-  unlockPrice: 0
+  unlockPrice: 200
   upgradeCost: 30
   gemCost: 1
   damage: 2
   fireRate: 2.5
   allyHealth: 0
-  skillName: 
+  skillName: Skill
   skillDescription: "C\xF3 kh\u1EA3 n\u0103ng thi\xEAu \u0111\u1ED1t qu\xE1i 2dmg/s\n\n\u0110\xE2y
     l\xE0 skill s\xFAng!!"
   skillType: 1

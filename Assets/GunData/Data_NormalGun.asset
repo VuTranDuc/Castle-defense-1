@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: 'Gun '
   icon: {fileID: -8782366636065271241, guid: 8020d5f84433b984ca8a5ee63879d48e, type: 3}
-  isUnlocked: 1
-  currentLevel: 4
-  unlockPrice: 0
-  upgradeCost: 120
-  gemCost: 2
-  damage: 6
+  isUnlocked: 0
+  currentLevel: 1
+  unlockPrice: 150
+  upgradeCost: 30
+  gemCost: 1
+  damage: 2
   fireRate: 1
   allyHealth: 0
   skillName: "Si\xEAu b\u1EAFn"

@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   damage: 1
   lifeTime: 3
-  slowAmount: 0
-  slowDuration: 0
+  freezeAmount: 0
+  freezeDuration: 0
   burnDamagePerSec: 2
   burnDuration: 3

@@ -64,7 +64,7 @@ public class GunItemUI : MonoBehaviour
         if (currentData.isUnlocked == false)
         {
             // --- TRƯỜNG HỢP: CHƯA MUA ---
-            if (groupLocked != null) groupLocked.SetActive(true);     // Hiện nút Mua
+            if (groupLocked != null) groupLocked.SetActive(true);      // Hiện nút Mua
             if (groupUnlocked != null) groupUnlocked.SetActive(false); // Ẩn nút Nâng cấp
 
             // Cập nhật giá mua
@@ -76,8 +76,27 @@ public class GunItemUI : MonoBehaviour
             if (groupLocked != null) groupLocked.SetActive(false);    // Ẩn nút Mua
             if (groupUnlocked != null) groupUnlocked.SetActive(true); // Hiện nút Nâng cấp
 
-            // Cập nhật giá nâng cấp
-            if (priceUpgradeGoldText != null) priceUpgradeGoldText.text = "Gold: " + currentData.upgradeCost.ToString();
+            // --- SỬA Ở ĐÂY: Lấy giá tiền ĐỘNG từ GameManager thay vì giá tĩnh ---
+
+            // Bước 1: Tìm xem khẩu súng này nằm ở số thứ tự mấy trong danh sách (Index)
+            int myIndex = -1;
+            for (int i = 0; i < GameManager.instance.allGuns.Length; i++)
+            {
+                if (GameManager.instance.allGuns[i] == currentData)
+                {
+                    myIndex = i;
+                    break;
+                }
+            }
+
+            // Bước 2: Gọi hàm tính tiền thông minh mà mình vừa viết bên GameManager
+            int realCost = GameManager.instance.GetGunUpgradeCost(myIndex);
+
+            // Bước 3: Hiển thị giá chuẩn lên màn hình
+            if (priceUpgradeGoldText != null) priceUpgradeGoldText.text = "Gold: " + realCost.ToString();
+
+            // -------------------------------------------------------------------
+
             // Ví dụ nâng bằng Gem (nếu bạn có UI cho nó)
             if (priceUpgradeGemText != null) priceUpgradeGemText.text = "Gem: " + currentData.gemCost.ToString();
         }
@@ -95,10 +114,17 @@ public class GunItemUI : MonoBehaviour
             GameManager.instance.AddGold(-currentData.unlockPrice);
 
             // Mở khóa súng
-            currentData.isUnlocked = true;
+            // --- SỬA NHẸ: Gọi hàm Unlock bên GameManager để nó Lưu luôn ---
+            int myIndex = -1;
+            for (int i = 0; i < GameManager.instance.allGuns.Length; i++)
+            {
+                if (GameManager.instance.allGuns[i] == currentData) { myIndex = i; break; }
+            }
+            GameManager.instance.UnlockGun(myIndex);
+            // -------------------------------------------------------------
 
             // Cập nhật lại UI ngay lập tức
-            UpdateStateUI();
+            SetGunData(currentData); // Load lại hết thông tin cho mới
 
             Debug.Log("Đã mua súng: " + currentData.gunName);
         }
@@ -111,29 +137,30 @@ public class GunItemUI : MonoBehaviour
     // 2. Nút NÂNG CẤP (Vàng)
     public void OnClickUpgradeGold()
     {
-        if (GameManager.instance.currentGold >= currentData.upgradeCost)
+        // --- SỬA LẠI HẾT PHẦN NÀY ---
+        // Không tự trừ tiền ở đây nữa, gọi GameManager làm việc đó cho chuẩn chỉ
+
+        // 1. Tìm Index của súng này
+        int myIndex = -1;
+        for (int i = 0; i < GameManager.instance.allGuns.Length; i++)
         {
-            // Trừ tiền
-            GameManager.instance.AddGold(-currentData.upgradeCost);
-
-            // Tăng chỉ số
-            currentData.currentLevel++;
-            currentData.damage += 1; 
-            currentData.upgradeCost += 50; 
-
-            // Cập nhật lại toàn bộ thông tin hiển thị
-            SetGunData(currentData);
-
-            Debug.Log("Nâng cấp thành công Lv." + currentData.currentLevel);
+            if (GameManager.instance.allGuns[i] == currentData)
+            {
+                myIndex = i;
+                break;
+            }
         }
-        else
-        {
-            Debug.Log("Không đủ vàng để nâng cấp!");
-        }
+
+        // 2. Gọi hàm nâng cấp bên GameManager (nó sẽ tự check tiền, trừ tiền, tăng level, lưu game)
+        GameManager.instance.UpgradeGun(myIndex);
+
+        // 3. Refresh lại giao diện ngay lập tức để thấy giá mới và level mới
+        SetGunData(currentData);
+        // ------------------------------
     }
 
     // 3. Nút NÂNG CẤP BẰNG GEM
-    public void OnClickUpgradeGem()
+    /*public void OnClickUpgradeGem()
     {
         // Kiểm tra xem đủ Gem trong kho không
         if (GameManager.instance.currentGems >= currentData.gemCost)
@@ -143,10 +170,15 @@ public class GunItemUI : MonoBehaviour
 
             // 2. Tăng chỉ số
             currentData.currentLevel++;
-            currentData.damage += 1; 
+            currentData.damage += 1;
 
             // 3. Tăng giá Gem cho lần sau 
             currentData.gemCost += 1;
+
+            // --- Thêm cái này để lưu lại không F5 là mất ---
+            GameManager.instance.SaveGame();
+            PlayerPrefs.Save();
+            // ----------------------------------------------
 
             // 4. Cập nhật lại giao diện
             SetGunData(currentData);
@@ -156,6 +188,30 @@ public class GunItemUI : MonoBehaviour
         else
         {
             Debug.Log("Không đủ Gem để nâng cấp!");
+        }
+    }*/
+
+    // 3. Nút NÂNG CẤP BẰNG GEM
+    public void OnClickUpgradeGem()
+    {
+        // 1. Tìm Index của súng này
+        int myIndex = -1;
+        for (int i = 0; i < GameManager.instance.allGuns.Length; i++)
+        {
+            if (GameManager.instance.allGuns[i] == currentData)
+            {
+                myIndex = i;
+                break;
+            }
+        }
+
+        // 2. Gọi hàm nâng cấp Gem bên GameManager
+        if (myIndex != -1)
+        {
+            GameManager.instance.UpgradeGunWithGem(myIndex);
+
+            // 3. Refresh lại giao diện ngay để thấy level và giá mới
+            SetGunData(currentData);
         }
     }
 

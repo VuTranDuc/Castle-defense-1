@@ -78,8 +78,7 @@ public class CastleHealth : MonoBehaviour
         }
     }
 
-    // ... (Phần OnTriggerEnter2D giữ nguyên như cũ) ...
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
@@ -90,7 +89,7 @@ public class CastleHealth : MonoBehaviour
             TakeDamage(damageToTake);
             Destroy(other.gameObject);
         }
-    }
+    }*/
 
     // Hàm nâng cấp máu (Gọi từ nút Upgrade)
     public void UpgradeHealth(float amount)
